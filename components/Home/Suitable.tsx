@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Suitable = () => {
   return (
-    <section className="flex flex-col w-full h-full bg-white justify-center items-center py-20 gap-15">
+    <section className="flex flex-col w-full h-full bg-white justify-center items-center py-20 gap-15 border-b-[#bcb3b3] border-b">
       <div className="flex flex-col gap-1">
         <p className="text-[#B2A088] text-lg text-center font-medium">
           Suitable For All Stove
