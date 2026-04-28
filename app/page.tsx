@@ -1,5 +1,7 @@
+import AboutOurProduct from "@/components/Home/AboutOurProduct";
 import MessageBox from "@/components/Home/MessageBox";
 import ShopNew from "@/components/Home/ShopNew";
+import Suitable from "@/components/Home/Suitable";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 
@@ -41,6 +43,8 @@ export default function Home() {
       </div>
       <MessageBox />
       <ShopNew />
+      <AboutOurProduct />
+      <Suitable />
     </>
   );
 }

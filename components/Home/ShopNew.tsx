@@ -1,4 +1,3 @@
-import React from "react";
 import { Card } from "../ui/card";
 import Image from "next/image";
 import { Heart, ShoppingCart } from "lucide-react";
@@ -26,7 +25,7 @@ const ShopNew = () => {
     ];
   return (
     <section className="flex flex-col bg-[#FFFFFF] justify-center items-center py-18 gap-10">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-1">
         <p className="text-black/50 text-lg text-center font-medium">
           Utensils for beautiful kitchen
         </p>
