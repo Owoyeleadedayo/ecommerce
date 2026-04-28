@@ -12,7 +12,7 @@ export default function Home() {
       <div className="pt-17.5 flex relative min-h-[50vh] md:h-screen bg-[url('/images/banner.jpg')] bg-no-repeat bg-cover bg-fixed bg-center ">
         {" "}
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute flex flex-col w-full h-full justify-center items-left px-10 md:px-20 gap-3">
+        <div className="absolute flex flex-col w-full h-full justify-center items-left px-10 md:px-25 gap-3">
           <div className="flex flex-col gap-6">
             <p className="text-sm text-white/35">Quality Solid</p>
             <div>
