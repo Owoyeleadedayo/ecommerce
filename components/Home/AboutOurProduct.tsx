@@ -37,21 +37,21 @@ const AboutOurProduct = () => {
     },
   ];
   return (
-    <section className="flex flex-col w-full h-full bg-[#F5EDE7] justify-center items-center py-22 gap-10">
+    <section className="flex flex-col w-full h-full bg-[#F5EDE7] justify-center items-center px-10 py-14 md:py-22 gap-5 md:gap-10">
       <div className="flex flex-col gap-1">
-        <p className="text-black/50 text-lg text-center font-medium capitalize">
+        <p className="text-black/50 text-sm md:text-lg text-center font-medium capitalize">
           about our product
         </p>
-        <p className="text-black text-4xl text-center font-medium">
+        <p className="text-black text-2xl md:text-4xl text-center font-medium">
           {" "}
           Designed for better cooking
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 w-full max-w-5xl">
         {features.map((item) => (
           <div key={item.id} className="flex flex-col max-w-sm gap-3">
-            <div className="relative h-16 w-full overflow-hidden">
+            <div className="relative h-14 md:h-16 w-full overflow-hidden">
               <Image
                 src={item.image}
                 alt={item.alt}
@@ -60,8 +60,8 @@ const AboutOurProduct = () => {
               />
             </div>
             <div className="flex flex-col gap-1 text-center pb-4">
-              <p className="text-2xl font-normal">{item.title}</p>
-              <p className="text-black/60 text-base font-light">
+              <p className="text-xl md:text-2xl font-normal">{item.title}</p>
+              <p className="text-black/60 text-sm md:text-base font-light">
                 {item.description}
               </p>
             </div>

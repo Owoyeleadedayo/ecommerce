@@ -9,14 +9,14 @@ import { MoveRight } from "lucide-react";
 export default function Home() {
   return (
     <>
-      <div className="pt-17.5 flex relative min-h-[50vh] md:h-screen bg-[url('/images/banner.jpg')] bg-no-repeat bg-cover bg-fixed bg-center ">
+      <div className="pt-17.5 flex relative min-h-[75vh] md:h-screen bg-[url('/images/banner.jpg')] bg-no-repeat bg-cover bg-fixed bg-center ">
         {" "}
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute flex flex-col w-full h-full justify-center items-left px-10 md:px-25 gap-3">
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 md:gap-6">
             <p className="text-sm text-white/35">Quality Solid</p>
             <div>
-              <p className="text-6xl text-white ">
+              <p className="text-3xl md:text-6xl text-white ">
                 Cooking is{" "}
                 <span className="text-[#B2A088]">
                   our <br></br>passion
@@ -33,7 +33,7 @@ export default function Home() {
             <div>
               <Button
                 className={
-                  "bg-transparent border border-white p-5 rounded-3xl hover:text-black hover:bg-white transition-colors duration-300 cursor-pointer"
+                  "bg-transparent border border-white p-3 md:p-5 rounded-3xl hover:text-black hover:bg-white transition-colors duration-300 cursor-pointer"
                 }
               >
                 Discover It <MoveRight />

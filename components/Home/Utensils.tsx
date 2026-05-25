@@ -54,20 +54,23 @@ const Utensils = () => {
       },
     ];
   return (
-    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center py-22 gap-10">
+    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center px-10 py-18 md:py-22 gap-10">
       <div className="flex flex-col gap-1">
-        <p className="text-black/50 text-lg text-center font-medium">
+        <p className="text-black/50 text-sm md:text-lg text-center font-medium">
           The paradise of utensils
         </p>
-        <p className="text-[#B2A088] text-4xl text-center font-semibold">
+        <p className="text-[#B2A088] text-2xl md:text-4xl text-center font-semibold">
           {" "}
           Get everything in one spot
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 w-full max-w-6xl gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full max-w-6xl place-items-center gap-5">
         {products.map((product) => (
-          <Card key={product.id} className="group relative w-68 h-full py-0">
+          <Card
+            key={product.id}
+            className="group relative w-full md:w-68 h-full py-0"
+          >
             <div className="relative h-60 w-full overflow-hidden">
               <Image
                 src={product.image}

@@ -24,20 +24,23 @@ const ShopNew = () => {
       },
     ];
   return (
-    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center py-18 gap-10">
+    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center py-10 md:py-18 px-10 md:px-35 gap-10">
       <div className="flex flex-col gap-1">
-        <p className="text-black/50 text-lg text-center font-medium">
+        <p className="text-black/50 text-sm md:text-lg text-center font-medium">
           Utensils for beautiful kitchen
         </p>
-        <p className="text-[#B2A088] text-4xl text-center font-semibold">
+        <p className="text-[#B2A088] text-2xl md:text-4xl text-center font-semibold">
           {" "}
           Shop New Nonsticks
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-8">
         {products.map((product) => (
-          <Card key={product.id} className="group relative w-75 h-full py-0">
+          <Card
+            key={product.id}
+            className="group relative w-full md:w-75 h-full py-0"
+          >
             <div className="relative h-80 w-full overflow-hidden">
               <Image
                 src={product.image}
@@ -58,7 +61,9 @@ const ShopNew = () => {
 
             <div className="flex flex-col gap-1 border-gray-200 text-center pb-4">
               <p className="text-xl font-semibold">{product.name}</p>
-              <p className="text-black/60 text-base font-medium">₦{product.price.toLocaleString()}</p>
+              <p className="text-black/60 text-base font-medium">
+                ₦{product.price.toLocaleString()}
+              </p>
             </div>
           </Card>
         ))}
