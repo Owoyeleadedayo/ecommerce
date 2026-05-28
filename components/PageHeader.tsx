@@ -11,14 +11,14 @@ const PageHeader = ({ pageName }: PageHeaderProps) => {
       {" "}
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="absolute flex flex-col w-full h-full justify-center items-center px-10 md:px-25 gap-3">
-        <p className="text-4xl text-white uppercase">{pageName}</p>
+        <p className="text-4xl text-white uppercase tracking-wider">{pageName}</p>
         <div>
           <Link
             href="/"
-            className="text-base md:text-xl text-white font-normal hover:text-[#B2A088] transition-colors duration-300 ease-in-out"
+            className="text-sm md:text-base tracking-widest text-white font-normal hover:text-[#B2A088] transition-colors duration-300 ease-in-out"
           >
             Home{" "}
-            <span className="text-base md:text-xl text-white font-normal">
+            <span className="">
               / {pageName}
             </span>
           </Link>

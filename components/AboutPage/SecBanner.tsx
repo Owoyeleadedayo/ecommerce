@@ -5,12 +5,9 @@ const SecBanner = () => {
   return (
     <section className="w-full px-6 py-20 md:px-12 lg:px-24">
       <div className="grid items-center gap-16 lg:grid-cols-2">
-        {/* IMAGE SECTION */}
         <div className="relative flex justify-center lg:justify-start">
-          {/* BACKGROUND SHAPE */}
-          <div className="absolute right-0 top-10 h-80 w-150 rounded-2xl bg-[#2A3A34]" />
+          <div className="absolute right-0 top-10 h-80 w-150 rounded-2xl bg-[#2A3A34] md:flex hidden" />
 
-          {/* IMAGE */}
           <div className="relative z-10 h-100 w-full max-w-137.5 overflow-hidden rounded-2xl shadow-2xl ml-0 md:ml-3">
             <Image
               src="/images/ckck.jpg"
@@ -21,7 +18,6 @@ const SecBanner = () => {
           </div>
         </div>
 
-        {/* CONTENT SECTION */}
         <div className="flex flex-col gap-4">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#B2A088]">
             Our Story

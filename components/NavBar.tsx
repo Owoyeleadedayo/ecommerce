@@ -11,10 +11,13 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
+import { ChevronDown } from "lucide-react";
 
 const NavBar = () => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+    const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,25 +61,40 @@ const NavBar = () => {
           );
         })}
 
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            render={<Button variant="outline">Pages</Button>}
-            className="bg-transparent border-none font-semibold text-lg text-white hover:bg-transparent hover:text-[#B2A088] focus:ring-0"
-          />
+        <DropdownMenu open={open} onOpenChange={setOpen}>
+          <div
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+          >
+            <DropdownMenuTrigger>
+              <Button
+                variant="ghost"
+                className="bg-transparent border-none font-semibold text-lg text-white hover:bg-transparent hover:text-[#B2A088] focus-visible:ring-0 shadow-none cursor-pointer"
+              >
+                <Link href="/services">Pages</Link>
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
 
-          <DropdownMenuContent>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link href="/services">Services</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/products">All Product</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/collections">All Collections</Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
+            <DropdownMenuContent
+              align="center"
+              className="w-52 border-none bg-white shadow-xl cursor-pointer"
+            >
+              <DropdownMenuGroup>
+                <DropdownMenuItem className="cursor-pointer">
+                  <Link href="/services">Services</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem className="cursor-pointer">
+                  <Link href="/products">All Product</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem className="cursor-pointer">
+                  <Link href="/collections">All Collections</Link>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </div>
         </DropdownMenu>
 
         <Link href="/contact">

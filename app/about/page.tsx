@@ -3,7 +3,7 @@ import Quality from '@/components/AboutPage/Quality';
 import SecBanner from '@/components/AboutPage/SecBanner';
 import Unbreakable from '@/components/AboutPage/Unbreakable';
 import PageHeader from '@/components/PageHeader';
-import React from 'react';
+import Sponsors from '@/components/Sponsors';
 
 const About = () => {
   return (
@@ -14,6 +14,7 @@ const About = () => {
         <Banner />
         <SecBanner />
         <Unbreakable />
+        <Sponsors />
       </div>
     </>
   );

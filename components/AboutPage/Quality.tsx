@@ -4,11 +4,11 @@ import { MoveRight } from 'lucide-react';
 
 const Quality = () => {
   return (
-    <div className="flex flex-col w-full py-20 justify-center items-center gap-2">
-      <h2 className="text-[#e7b573] text-base font-normal">
+    <div className="flex flex-col w-full py-15 md:py-20 justify-center items-center gap-2 px-6">
+      <h2 className="text-[#B2A088] uppercase tracking-widest text-sm font-normal">
         The premium utensils
       </h2>
-      <h3 className="text-4xl text-[#B2A088] font-medium">
+      <h3 className="text-2xl md:text-4xl text-[#B2A088] font-medium">
         Quality is our obligation
       </h3>
       <div className="max-w-5xl mt-2">
