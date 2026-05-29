@@ -24,7 +24,7 @@ const banners = [
 
 const Banner = () => {
   return (
-    <section className="bg-[#F3EBE4] w-full px-6 py-15 md:py-10 md:px-12 lg:px-25">
+    <section className="bg-[#F3EBE4] w-full px-6 py-15 md:py-10 md:px-12 lg:px-45">
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-5">
         {banners.map((banner) => (
           <div

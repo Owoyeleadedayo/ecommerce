@@ -3,12 +3,12 @@ import React from "react";
 
 const SecBanner = () => {
   return (
-    <section className="w-full px-6 py-20 md:px-12 lg:px-24">
-      <div className="grid items-center gap-16 lg:grid-cols-2">
+    <section className="w-full px-6 py-20 md:px-12 lg:px-45">
+      <div className="grid items-center gap-20 lg:grid-cols-2">
         <div className="relative flex justify-center lg:justify-start">
-          <div className="absolute right-0 top-10 h-80 w-150 rounded-2xl bg-[#2A3A34] md:flex hidden" />
+          <div className="absolute -left-10 top-10 h-80 w-140 rounded-2xl bg-[#2A3A34] md:flex hidden" />
 
-          <div className="relative z-10 h-100 w-full max-w-137.5 overflow-hidden rounded-2xl shadow-2xl ml-0 md:ml-3">
+          <div className="relative z-10 h-100 w-full max-w-137.5 overflow-hidden rounded-2xl shadow-2xl">
             <Image
               src="/images/ckck.jpg"
               alt="Cooking story"

@@ -37,7 +37,7 @@ const AboutOurProduct = () => {
     },
   ];
   return (
-    <section className="flex flex-col w-full h-full bg-[#F5EDE7] justify-center items-center px-10 py-14 md:py-22 gap-5 md:gap-10">
+    <section className="flex flex-col w-full h-full bg-[#F5EDE7] justify-center items-center px-10 md:px-20 lg:px-45 py-14 md:py-22 gap-5 md:gap-10">
       <div className="flex flex-col gap-1">
         <p className="text-black/50 text-sm md:text-lg text-center font-medium capitalize">
           about our product

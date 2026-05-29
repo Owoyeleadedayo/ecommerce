@@ -3,7 +3,7 @@ import React from 'react';
 
 const Unbreakable = () => {
   return (
-    <section className="w-full bg-[#F3EBE4] px-6 py-15 md:py-20 md:px-12 lg:px-24">
+    <section className="w-full bg-[#F3EBE4] px-6 py-15 md:py-20 md:px-12 lg:px-45">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-16 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#B2A088]">

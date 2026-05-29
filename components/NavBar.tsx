@@ -35,7 +35,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`flex w-full h-17.5 items-center justify-between px-25 fixed top-0 z-50 transition-all duration-300
+      className={`flex w-full h-17.5 items-center justify-between px-45 fixed top-0 z-50 transition-all duration-300
       ${
         scrolled
           ? "bg-[#26352F] backdrop-blur-md border-b border-white/10 shadow-md"
@@ -64,7 +64,6 @@ const NavBar = () => {
         <DropdownMenu open={open} onOpenChange={setOpen}>
           <div
             onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
           >
             <DropdownMenuTrigger>
               <Button

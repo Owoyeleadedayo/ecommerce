@@ -29,7 +29,7 @@ const solutionsData = [
 
 const Solutions = () => {
   return (
-    <section className="flex flex-col items-center justify-center gap-10 bg-[#F3EBE4] px-6 py-16 md:px-12 lg:px-24">
+    <section className="flex flex-col items-center justify-center gap-10 bg-[#F3EBE4] px-6 py-16 md:px-12 lg:px-45">
       <div className="flex flex-col items-center gap-2 text-center">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#B2A088]">
           Our Story

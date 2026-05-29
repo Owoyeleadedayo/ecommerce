@@ -33,7 +33,7 @@ const marketData = [
 
 const Market = () => {
   return (
-    <section className="px-6 py-16 md:px-12 lg:px-24">
+    <section className="px-6 py-16 md:px-12 lg:px-45">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {marketData.map((item) => (
           <div
