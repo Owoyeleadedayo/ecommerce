@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
+import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import { makeStore } from "./index";
+import cartReducer from "./cartSlice";
 import { CartItem } from "@/types/product";
 
 const CART_STORAGE_KEY = "ck-cart-items";
@@ -21,34 +22,27 @@ function loadCartFromStorage(): CartItem[] {
 function saveCartToStorage(items: CartItem[]) {
   try {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-  } catch {
-    // If localStorage is unavailable, silently fail
-  }
+  } catch {}
 }
+
+const store = configureStore({
+  reducer: { cart: cartReducer },
+  preloadedState: {
+    cart: { items: loadCartFromStorage(), isOpen: false },
+  },
+});
 
 export default function StoreProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Create store once with cart preloaded from localStorage
-  const storeRef = useRef<ReturnType<typeof makeStore> | null>(null);
-
-  if (!storeRef.current) {
-    const savedItems = loadCartFromStorage();
-    storeRef.current = makeStore({
-      cart: {
-        items: savedItems,
-        isOpen: false, // always start with drawer closed
-      },
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      saveCartToStorage(store.getState().cart.items);
     });
+    return unsubscribe;
+  }, []);
 
-    // Subscribe to store changes and persist cart items to localStorage
-    storeRef.current.subscribe(() => {
-      const state = storeRef.current!.getState();
-      saveCartToStorage(state.cart.items);
-    });
-  }
-
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 }
