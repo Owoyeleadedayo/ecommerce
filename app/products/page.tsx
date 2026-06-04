@@ -10,10 +10,10 @@ export const metadata = {
 
 const ProductsPage = () => {
   return (
-    <main className="flex-1 flex flex-col w-full bg-[#FDFBF7]">
+    <main className="flex-1 flex flex-col w-full bg-[#FDFBF7] ">
       <PageHeader pageName="All Products" />
-      
-      <div className="w-full flex-1">
+
+      <div className="w-full flex-1 px-6 md:px-10 xl:px-40">
         <ProductGrid products={products} />
       </div>
     </main>

@@ -76,7 +76,7 @@ export default function BankTransferForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Alert instructions */}
       <div className="bg-accent/30 border border-[#B2A088]/40 rounded-xl p-4 text-sm text-[#E2D2BC] leading-relaxed flex items-start gap-3">
-        <Info className="h-5 w-5 text-[#B2A088] flex-shrink-0 mt-0.5" />
+        <Info className="h-5 w-5 text-[#B2A088] shrink-0 mt-0.5" />
         <div>
           <p className="font-semibold mb-1">Bank Transfer Instructions</p>
           Select your preferred commercial bank below, transfer the exact order total to the account displayed, and click the confirmation button when finished.
@@ -100,11 +100,10 @@ export default function BankTransferForm() {
                 }`}
             >
               <div
-                className={`h-8 w-8 rounded-full ${bank.color} flex items-center justify-center text-white text-xs font-bold font-mono`}
+                className={`p-4 rounded-full ${bank.color} flex items-center justify-center text-white text-xs font-bold font-mono`}
               >
-                {bank.name.substring(0, 2)}
+                {bank.name.toUpperCase()}
               </div>
-              <span className="text-sm font-semibold">{bank.name}</span>
             </button>
           ))}
         </div>

@@ -8,7 +8,7 @@ import { useAppSelector } from "@/store";
 import PageHeader from "@/components/PageHeader";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import BankTransferForm from "@/components/checkout/BankTransferForm";
-import { ShoppingBag, ArrowLeft, Loader2, Info } from "lucide-react";
+import { ShoppingBag, ArrowLeft, Loader2, Info, CreditCard, Landmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/types/product";
 
@@ -93,13 +93,15 @@ export default function CheckoutPage() {
 
   if (items.length === 0 && !isLoading) {
     return (
-      <main className="flex-1 flex flex-col w-full bg-[#18231E]">
+      <main className="flex-1 flex flex-col w-full bg-accent px-6 md:px-10 xl:px-45">
         <PageHeader pageName="Checkout" />
         <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-white min-h-[50vh] gap-6">
-          <ShoppingBag className="h-16 w-16 text-white/20 stroke-[1.5]" />
+          <ShoppingBag className="h-16 w-16 text-black stroke-[1.5]" />
           <div>
-            <h2 className="text-2xl font-bold">Your Cart is Empty</h2>
-            <p className="text-white/60 mt-2 max-w-sm">
+            <h2 className="text-2xl font-bold text-black">
+              Your Cart is Empty
+            </h2>
+            <p className="text-black/60 mt-2 max-w-sm">
               Please add products to your cart before proceeding to checkout.
             </p>
           </div>
@@ -114,24 +116,24 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main className="flex-1 flex flex-col w-full bg-[#18231E] text-white">
+    <main className="flex-1 flex flex-col w-full bg-accent text-white">
       <PageHeader pageName="Checkout" />
 
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-10 xl:px-25 py-12 md:py-16">
         <div className="mb-8">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-black hover:text-black border border-gray-500 p-2 rounded-lg transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Products
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start ">
           {/* Left Side: Stripe form */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="bg-[#26352F]/40 backdrop-blur-md rounded-2xl border border-white/10 p-6 md:p-8">
+            <div className="bg-[#26352F] backdrop-blur-md rounded-2xl border border-white/10 p-6 md:p-8">
               <h2 className="text-2xl font-bold tracking-tight mb-6">
                 Shipping &amp; Payment
               </h2>
@@ -146,7 +148,9 @@ export default function CheckoutPage() {
                       : "bg-white/5 border-white/5 text-white/65 hover:border-white/15 hover:text-white"
                   }`}
                 >
-                  💳 Card Payment
+                  <div className="flex items-center justify-center gap-2">
+                    <CreditCard /> Card Payment
+                  </div>
                 </button>
                 <button
                   onClick={() => setPaymentMethod("transfer")}
@@ -156,7 +160,9 @@ export default function CheckoutPage() {
                       : "bg-white/5 border-white/5 text-white/65 hover:border-white/15 hover:text-white"
                   }`}
                 >
-                  🏦 Bank Transfer
+                  <div className="flex items-center justify-center gap-2">
+                    <Landmark /> Bank Transfer
+                  </div>
                 </button>
               </div>
 
@@ -186,7 +192,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* Right Side: Order summary */}
-          <div className="lg:col-span-5 bg-[#26352F]/30 border border-white/10 rounded-2xl p-6 md:p-8 space-y-6">
+          <div className="lg:col-span-5 bg-[#26352F] border border-white/10 rounded-2xl p-6 md:p-8 space-y-6">
             <h2 className="text-2xl font-bold tracking-tight pb-4 border-b border-white/10">
               Order Summary
             </h2>
@@ -220,11 +226,11 @@ export default function CheckoutPage() {
                         {item.product.name}
                       </h4>
                       <p className="text-xs text-white/50 mt-0.5">
-                        Qty: {item.quantity} × ${item.product.price.toFixed(2)}
+                        Qty: {item.quantity} × ₦{item.product.price.toFixed(2)}
                       </p>
                     </div>
                     <span className="text-sm font-bold text-white/90">
-                      ${(item.product.price * item.quantity).toFixed(2)}
+                      ₦{(item.product.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ),
@@ -235,11 +241,11 @@ export default function CheckoutPage() {
             <div className="space-y-3 pt-4 border-t border-white/10 text-sm">
               <div className="flex justify-between text-white/70">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>₦{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-white/70">
                 <span>Estimated Tax (8%)</span>
-                <span>${tax.toFixed(2)}</span>
+                <span>₦{tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-white/70">
                 <span>Shipping</span>
@@ -256,7 +262,7 @@ export default function CheckoutPage() {
                 <div className="flex items-center gap-1.5 text-xs text-[#B2A088] bg-[#B2A088]/10 px-3 py-2 rounded-lg border border-[#B2A088]/20">
                   <Info className="h-3.5 w-3.5 shrink-0" />
                   <span>
-                    Add ${(150 - subtotal).toFixed(2)} more for Free Shipping!
+                    Add ₦{(150 - subtotal).toFixed(2)} more for Free Shipping!
                   </span>
                 </div>
               )}
@@ -264,7 +270,7 @@ export default function CheckoutPage() {
               <div className="flex justify-between text-base font-bold pt-3 border-t border-white/10 text-white">
                 <span>Total</span>
                 <span className="text-xl text-[#B2A088]">
-                  ${total.toFixed(2)}
+                  ₦{total.toFixed(2)}
                 </span>
               </div>
             </div>

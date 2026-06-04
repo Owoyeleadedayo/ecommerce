@@ -31,10 +31,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-16 text-white">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+    <section className="w-full max-w-7xl mx-auto px-4 md:px-8 xl:px-25 py-16 text-white ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 ">
         {/* Left Column: Product Image */}
-        <div className="relative rounded-2xl overflow-hidden bg-accent border border-white/10 flex items-center justify-center p-4 min-h-[350px] md:min-h-[500px]">
+        <div className="relative rounded-2xl overflow-hidden bg-accent border border-gray-500 flex items-center justify-center p-4 min-h-[350px] md:min-h-[500px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.image}
@@ -53,7 +53,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           <div className="space-y-6">
             {/* Category and Rating */}
             <div className="flex flex-wrap items-center gap-4">
-              <span className="bg-white/5 border border-white/10 text-white/70 px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+              <span className="bg-white/5 border border-gray-500 text-gray-700 px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
                 {product.category}
               </span>
               <div className="flex items-center gap-1.5">
@@ -64,22 +64,22 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                       className={`h-4 w-4 ${
                         i < Math.floor(product.rating)
                           ? "fill-yellow-400 text-yellow-400"
-                          : "text-white/20"
+                          : "text-white/60"
                       }`}
                     />
                   ))}
                 </div>
-                <span className="text-sm font-medium text-white/80">
+                <span className="text-sm font-medium text-black/80">
                   {product.rating}
                 </span>
-                <span className="text-sm text-white/40">
+                <span className="text-sm text-black/40">
                   ({product.reviewCount} customer reviews)
                 </span>
               </div>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-3xl md:text-5xl text-gray-600 font-extrabold tracking-tight">
               {product.name}
             </h1>
 
@@ -89,7 +89,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 ₦{product.price.toFixed(2)}
               </span>
               {product.originalPrice && (
-                <span className="text-lg text-white/40 line-through">
+                <span className="text-lg text-gray-400 line-through">
                   ₦{product.originalPrice.toFixed(2)}
                 </span>
               )}
@@ -102,13 +102,13 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                   product.inStock ? "bg-green-500" : "bg-red-500"
                 }`}
               />
-              <span className="text-sm font-semibold">
+              <span className="text-sm text-gray-700 font-semibold">
                 {product.inStock ? "In Stock & Ready to Ship" : "Out of Stock"}
               </span>
             </div>
 
             {/* Description */}
-            <p className="text-base text-white/70 leading-relaxed border-t border-b border-white/10 py-6">
+            <p className="text-base text-gray-600 leading-relaxed border-t border-b border-gray-500 py-6">
               {product.description}
             </p>
           </div>
@@ -118,13 +118,13 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             {product.inStock && (
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 {/* Quantity adjust */}
-                <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 h-14 sm:w-36">
-                  <span className="text-sm text-white/50 select-none">Qty</span>
+                <div className="flex items-center justify-between bg-white/5 border border-gray-500 rounded-xl px-4 py-2.5 h-14 sm:w-36">
+                  <span className="text-sm text-gray-600 select-none">Qty</span>
                   <div className="flex items-center gap-3">
                     <button
                       onClick={handleDecrease}
                       disabled={quantity <= 1}
-                      className="p-1 text-white/60 hover:text-white disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                      className="p-1 text-gray-600 hover:text-gray-700 disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
@@ -133,7 +133,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     </span>
                     <button
                       onClick={handleIncrease}
-                      className="p-1 text-white/60 hover:text-white cursor-pointer"
+                      className="p-1 text-gray-600 hover:text-gray-700 cursor-pointer"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -143,7 +143,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 {/* Add to Cart button */}
                 <Button
                   onClick={handleAddToCart}
-                  className="flex-1 bg-[#B2A088] hover:bg-[#A39178] text-white h-14 rounded-xl font-bold text-base flex items-center justify-center gap-3 shadow-lg hover:scale-[1.01] transition-all cursor-pointer"
+                  className="flex-1 bg-[#B2A088] hover:bg-[#A39178] text-gray-600 h-14 rounded-xl font-bold text-base flex items-center justify-center gap-3 shadow-lg hover:scale-[1.01] transition-all cursor-pointer"
                 >
                   <ShoppingCart className="h-5 w-5" />
                   Add To Cart — ₦{(product.price * quantity).toFixed(2)}
@@ -152,7 +152,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             )}
 
             {/* Core guarantees */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/10 text-white/60 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-500 text-gray-600 text-xs">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-[#B2A088] shrink-0" />
                 <span>Secure Checkout & Payment encryption</span>

@@ -44,7 +44,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {/* Related Products Section */}
       {related.length > 0 && (
-        <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-16 border-t border-[#EAE3DB]">
+        <section className="w-full max-w-7xl mx-auto px-4 md:px-8 xl:px-25 py-16 border-t border-[#EAE3DB]">
           <h2 className="text-3xl font-extrabold text-[#26352F] tracking-tight mb-10 text-center md:text-left">
             You May Also <span className="text-[#B2A088]">Like</span>
           </h2>
