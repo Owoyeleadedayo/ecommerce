@@ -24,7 +24,8 @@ const NavBar = () => {
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cart);
 
-  const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const totalCount = items.reduce((sum: any, item: { quantity: any; }) => sum + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {

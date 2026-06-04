@@ -34,7 +34,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-16 text-white">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         {/* Left Column: Product Image */}
-        <div className="relative rounded-2xl overflow-hidden bg-[#26352F]/30 border border-white/10 flex items-center justify-center p-4 min-h-[350px] md:min-h-[500px]">
+        <div className="relative rounded-2xl overflow-hidden bg-accent border border-white/10 flex items-center justify-center p-4 min-h-[350px] md:min-h-[500px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.image}
@@ -86,11 +86,11 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             {/* Price */}
             <div className="flex items-baseline gap-4">
               <span className="text-3xl md:text-4xl font-extrabold text-[#B2A088]">
-                ${product.price.toFixed(2)}
+                ₦{product.price.toFixed(2)}
               </span>
               {product.originalPrice && (
                 <span className="text-lg text-white/40 line-through">
-                  ${product.originalPrice.toFixed(2)}
+                  ₦{product.originalPrice.toFixed(2)}
                 </span>
               )}
             </div>
@@ -128,7 +128,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     >
                       <Minus className="h-4 w-4" />
                     </button>
-                    <span className="font-bold text-lg min-w-[20px] text-center select-none">
+                    <span className="font-bold text-lg min-w-5 text-center select-none">
                       {quantity}
                     </span>
                     <button
@@ -146,7 +146,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                   className="flex-1 bg-[#B2A088] hover:bg-[#A39178] text-white h-14 rounded-xl font-bold text-base flex items-center justify-center gap-3 shadow-lg hover:scale-[1.01] transition-all cursor-pointer"
                 >
                   <ShoppingCart className="h-5 w-5" />
-                  Add To Cart — ${(product.price * quantity).toFixed(2)}
+                  Add To Cart — ₦{(product.price * quantity).toFixed(2)}
                 </Button>
               </div>
             )}
@@ -154,15 +154,15 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             {/* Core guarantees */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/10 text-white/60 text-xs">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-[#B2A088] flex-shrink-0" />
+                <ShieldCheck className="h-5 w-5 text-[#B2A088] shrink-0" />
                 <span>Secure Checkout & Payment encryption</span>
               </div>
               <div className="flex items-center gap-2">
-                <Truck className="h-5 w-5 text-[#B2A088] flex-shrink-0" />
+                <Truck className="h-5 w-5 text-[#B2A088] shrink-0" />
                 <span>Fast & Reliable Insured Shipping</span>
               </div>
               <div className="flex items-center gap-2">
-                <RefreshCw className="h-5 w-5 text-[#B2A088] flex-shrink-0" />
+                <RefreshCw className="h-5 w-5 text-[#B2A088] shrink-0" />
                 <span>30-Day Money Back Guarantee</span>
               </div>
             </div>

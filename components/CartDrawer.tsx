@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { setCartOpen, removeFromCart, updateQuantity } from "@/store/cartSlice";
 import { X, Plus, Minus, ShoppingBag, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
+import { CartItem } from "@/types/product";
 
 export default function CartDrawer() {
   const dispatch = useAppDispatch();
@@ -23,9 +24,10 @@ export default function CartDrawer() {
     };
   }, [isOpen]);
 
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0
+  const subtotal = items.reduce<number>(
+    (sum: number, item: { product: { price: number }; quantity: number }) =>
+      sum + item.product.price * item.quantity,
+    0,
   );
 
   if (!isOpen) return null;
@@ -47,7 +49,7 @@ export default function CartDrawer() {
             <h2 className="text-xl font-bold tracking-wide">Your Cart</h2>
             {items.length > 0 && (
               <span className="rounded-full bg-[#B2A088] px-2 py-0.5 text-xs font-semibold">
-                {items.reduce((count, item) => count + item.quantity, 0)}
+                {items.reduce((count: number, item: CartItem) => count + item.quantity, 0)}
               </span>
             )}
           </div>
@@ -65,7 +67,9 @@ export default function CartDrawer() {
             <div className="flex h-64 flex-col items-center justify-center text-center gap-4">
               <ShoppingBag className="h-16 w-16 text-white/20 stroke-[1.5]" />
               <div>
-                <p className="text-lg font-medium text-white/80">Your cart is empty</p>
+                <p className="text-lg font-medium text-white/80">
+                  Your cart is empty
+                </p>
                 <p className="text-sm text-white/40 mt-1">
                   Explore our premium cookware collection.
                 </p>
@@ -78,13 +82,13 @@ export default function CartDrawer() {
               </Button>
             </div>
           ) : (
-            items.map((item) => (
+            items.map((item: CartItem) => (
               <div
                 key={item.product.id}
                 className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:border-white/10 transition-colors"
               >
                 {/* Product Image */}
-                <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-black/20">
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-black/20">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.product.image}
@@ -101,7 +105,7 @@ export default function CartDrawer() {
                   <p className="text-xs text-[#B2A088] mt-0.5">
                     {item.product.category}
                   </p>
-                  
+
                   {/* Quantity and Price Row */}
                   <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center bg-black/40 rounded-lg border border-white/10">
@@ -111,7 +115,7 @@ export default function CartDrawer() {
                             updateQuantity({
                               productId: item.product.id,
                               quantity: item.quantity - 1,
-                            })
+                            }),
                           )
                         }
                         className="p-1 px-2 text-white/60 hover:text-white cursor-pointer"
@@ -127,7 +131,7 @@ export default function CartDrawer() {
                             updateQuantity({
                               productId: item.product.id,
                               quantity: item.quantity + 1,
-                            })
+                            }),
                           )
                         }
                         className="p-1 px-2 text-white/60 hover:text-white cursor-pointer"
@@ -136,7 +140,7 @@ export default function CartDrawer() {
                       </button>
                     </div>
                     <span className="text-sm font-bold text-white/90">
-                      ${(item.product.price * item.quantity).toFixed(2)}
+                      ₦{(item.product.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -159,7 +163,7 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between text-base">
               <span className="font-medium text-white/70">Subtotal</span>
               <span className="text-2xl font-bold text-white">
-                ${subtotal.toFixed(2)}
+                ₦{subtotal.toFixed(2)}
               </span>
             </div>
             <p className="text-xs text-white/40">
@@ -176,7 +180,7 @@ export default function CartDrawer() {
               </Link>
               <button
                 onClick={() => dispatch(setCartOpen(false))}
-                className="w-full text-center py-2 text-sm text-white/60 hover:text-white transition-colors cursor-pointer"
+                className="w-full text-center py-2 text-sm text-white/60 hover:text-white border rounded-lg transition-colors cursor-pointer"
               >
                 Continue Shopping
               </button>

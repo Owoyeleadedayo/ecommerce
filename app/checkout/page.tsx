@@ -10,11 +10,13 @@ import CheckoutForm from "@/components/checkout/CheckoutForm";
 import BankTransferForm from "@/components/checkout/BankTransferForm";
 import { ShoppingBag, ArrowLeft, Loader2, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CartItem } from "@/types/product";
 
 // Initialize Stripe. Uses a fallback string if the key is not defined.
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder"
 );
+
 
 export default function CheckoutPage() {
   const { items } = useAppSelector((state) => state.cart);
@@ -25,25 +27,25 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<"card" | "transfer">("card");
 
   // Pricing calculations
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0
+  const subtotal = items.reduce<number>(
+    (sum: number, item: CartItem) => sum + item.product.price * item.quantity,
+    0,
   );
   const tax = subtotal * 0.08;
   const shipping = subtotal > 150 ? 0 : 9.99;
   const total = subtotal + tax + shipping;
 
   useEffect(() => {
-    if (items.length === 0) {
-      setIsLoading(false);
-      return;
-    }
-
     const fetchPaymentIntent = async () => {
+      if (items.length === 0) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
         setIsLoading(true);
         setError(null);
-        
+
         const response = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -57,9 +59,13 @@ export default function CheckoutPage() {
         const data = await response.json();
         setClientSecret(data.clientSecret);
         setIsMock(!!data.mock);
-      } catch (err: any) {
+      } catch (err) {
         console.error(err);
-        setError(err.message || "Something went wrong. Please try again.");
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Something went wrong. Please try again.",
+        );
       } finally {
         setIsLoading(false);
       }
@@ -159,7 +165,9 @@ export default function CheckoutPage() {
               ) : isLoading ? (
                 <div className="flex flex-col items-center justify-center py-20 text-white/60 gap-3">
                   <Loader2 className="h-10 w-10 animate-spin text-[#B2A088]" />
-                  <p className="text-sm font-semibold">Initializing Secure Gateway...</p>
+                  <p className="text-sm font-semibold">
+                    Initializing Secure Gateway...
+                  </p>
                 </div>
               ) : error ? (
                 <div className="bg-red-500/10 border border-red-500/20 text-red-300 rounded-xl p-4 text-sm font-medium">
@@ -185,29 +193,42 @@ export default function CheckoutPage() {
 
             {/* Item list */}
             <div className="max-h-60 overflow-y-auto pr-2 space-y-4">
-              {items.map((item) => (
-                <div key={item.product.id} className="flex gap-4 items-center">
-                  <div className="h-16 w-16 rounded-lg overflow-hidden bg-black/20 flex-shrink-0">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.product.image}
-                      alt={item.product.name}
-                      className="h-full w-full object-cover"
-                    />
+              {items.map(
+                (item: {
+                  product: {
+                    id: string;
+                    name: string;
+                    price: number;
+                    image: string;
+                  };
+                  quantity: number;
+                }) => (
+                  <div
+                    key={item.product.id}
+                    className="flex gap-4 items-center"
+                  >
+                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-black/20 shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.product.image}
+                        alt={item.product.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-semibold text-white/95 truncate">
+                        {item.product.name}
+                      </h4>
+                      <p className="text-xs text-white/50 mt-0.5">
+                        Qty: {item.quantity} × ${item.product.price.toFixed(2)}
+                      </p>
+                    </div>
+                    <span className="text-sm font-bold text-white/90">
+                      ${(item.product.price * item.quantity).toFixed(2)}
+                    </span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-semibold text-white/95 truncate">
-                      {item.product.name}
-                    </h4>
-                    <p className="text-xs text-white/50 mt-0.5">
-                      Qty: {item.quantity} × ${item.product.price.toFixed(2)}
-                    </p>
-                  </div>
-                  <span className="text-sm font-bold text-white/90">
-                    ${(item.product.price * item.quantity).toFixed(2)}
-                  </span>
-                </div>
-              ))}
+                ),
+              )}
             </div>
 
             {/* Calculations block */}
@@ -233,14 +254,18 @@ export default function CheckoutPage() {
 
               {shipping > 0 && (
                 <div className="flex items-center gap-1.5 text-xs text-[#B2A088] bg-[#B2A088]/10 px-3 py-2 rounded-lg border border-[#B2A088]/20">
-                  <Info className="h-3.5 w-3.5 flex-shrink-0" />
-                  <span>Add ${(150 - subtotal).toFixed(2)} more for Free Shipping!</span>
+                  <Info className="h-3.5 w-3.5 shrink-0" />
+                  <span>
+                    Add ${(150 - subtotal).toFixed(2)} more for Free Shipping!
+                  </span>
                 </div>
               )}
 
               <div className="flex justify-between text-base font-bold pt-3 border-t border-white/10 text-white">
                 <span>Total</span>
-                <span className="text-xl text-[#B2A088]">${total.toFixed(2)}</span>
+                <span className="text-xl text-[#B2A088]">
+                  ${total.toFixed(2)}
+                </span>
               </div>
             </div>
           </div>

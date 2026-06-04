@@ -74,11 +74,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex items-center justify-between mt-auto">
           <div className="flex items-baseline gap-2">
             <span className="text-xl font-bold text-[#26352F]">
-              ${product.price.toFixed(2)}
+              ₦{product.price.toFixed(2)}
             </span>
             {product.originalPrice && (
               <span className="text-sm text-black/40 line-through">
-                ${product.originalPrice.toFixed(2)}
+                ₦{product.originalPrice.toFixed(2)}
               </span>
             )}
           </div>
