@@ -78,19 +78,18 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
 
   return (
     <Card className="group relative w-full md:w-68 h-full py-0 overflow-hidden">
-      {/* Image container */}
       <div className="relative h-60 w-full overflow-hidden bg-gray-50">
         {!imgError ? (
           <Image
             src={product.image}
             alt={product.name}
             fill
+            unoptimized
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-contain transition-transform duration-300 group-hover:scale-105"
             onError={() => setImgError(true)}
           />
         ) : (
-          // Fallback placeholder when image fails to load
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-100 text-gray-400">
             <ShoppingCart size={32} className="opacity-30" />
             <span className="text-xs">{product.name}</span>
