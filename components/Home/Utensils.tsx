@@ -75,7 +75,7 @@ const Utensils = () => {
   });
 
   return (
-    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center px-10 md:px-20 lg:px-45 py-18 md:py-22 gap-10">
+    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center px-6 md:px-16 lg:px-45 py-18 md:py-22 gap-10">
       <div className="flex flex-col gap-1">
         <p className="text-black/50 text-sm md:text-lg text-center font-medium">
           The paradise of utensils

@@ -7,7 +7,7 @@ const AboutOurProduct = () => {
       id: 1,
       title: "No chemical",
       description:
-        "Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum.",
+        "Our products are free from harmful chemicals, ensuring a safe and healthy cooking experience.",
       image: "/images/nochemical.png",
       alt: "no chemical",
     },
@@ -15,7 +15,7 @@ const AboutOurProduct = () => {
       id: 2,
       title: "Earth Friendly",
       description:
-        "Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum.",
+        "Our products are designed with the environment in mind, using sustainable materials and practices.",
       image: "/images/planet-earth.png",
       alt: "earth friendly",
     },
@@ -23,7 +23,7 @@ const AboutOurProduct = () => {
       id: 3,
       title: "Recycle Product",
       description:
-        "Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum.",
+        "Our products are made from recycled materials, reducing waste and promoting sustainability.",
       image: "/images/recycle.png",
       alt: "recycle product",
     },
@@ -31,7 +31,7 @@ const AboutOurProduct = () => {
       id: 4,
       title: "Sturdy & Durable",
       description:
-        "Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum.",
+        "Our products are built to last, providing you with years of reliable performance.",
       image: "/images/stopwatch.png",
       alt: "sturdy durable",
     },

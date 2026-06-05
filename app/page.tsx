@@ -12,7 +12,7 @@ export default function Home() {
       <div className="pt-17.5 flex relative min-h-[75vh] md:h-screen bg-[url('/images/banner.jpg')] bg-no-repeat bg-cover bg-fixed bg-center ">
         {" "}
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute flex flex-col w-full h-full justify-center items-left px-10 md:px-45 gap-3">
+        <div className="absolute flex flex-col w-full h-full justify-center items-left px-6 md:px-16 xl:px-45 gap-3">
           <div className="flex flex-col gap-4 md:gap-6">
             <p className="text-sm text-white/35">Quality Solid</p>
             <div>
@@ -24,10 +24,10 @@ export default function Home() {
               </p>
             </div>
             <div className="max-w-112.5">
-              <p className="text-sm text-white/35 leading-5">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos
-                tenetur aliquid accusantium exercitationem atque ducimus
-                possimus tempore quisquam quaerat cumque.
+              <p className="text-sm text-white/50 leading-5">
+                Experience the art of cooking with our premium cookware. Crafted
+                for durability and designed to inspire culinary creativity in every
+                kitchen.
               </p>
             </div>
             <div>
