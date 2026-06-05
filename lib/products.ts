@@ -33,12 +33,11 @@ export const products: Product[] = [
     id: "p3",
     slug: "copper-cookware-set-10pc",
     name: "Copper Cookware Set (6-Piece)",
-    price: 15000.00,
+    price: 15000.0,
     category: "Cookware",
     description:
       "Elegant 6-piece professional copper cookware set. Offers unmatched heat responsiveness and precise control for delicate sauces, sautés, and braises. Includes lids.",
-    image:
-      "/images/utensils/k4.jpeg",
+    image: "/images/utensils/k4.jpeg",
     rating: 4.7,
     reviewCount: 95,
     badge: "Premium",
@@ -52,8 +51,7 @@ export const products: Product[] = [
     category: "Tableware",
     description:
       "Set of 4 handcrafted stoneware dinner plates and bowls in a beautiful speckled glaze. Durable, microwave and dishwasher safe, and perfect for everyday use or special occasions.",
-    image:
-      "/images/utensils/saucepan.png",
+    image: "/images/utensils/saucepan.png",
     rating: 4.6,
     reviewCount: 220,
     inStock: true,
@@ -62,12 +60,11 @@ export const products: Product[] = [
     id: "p5",
     slug: "tabletop-tray-set",
     name: "Elegant Tabletop Tray Set",
-    price: 3000.00,
+    price: 3000.0,
     category: "Tableware",
     description:
       "Set of 3 elegant serving trays in varying sizes, crafted from durable bamboo with a natural finish. Perfect for serving appetizers, cheese, charcuterie, or as stylish catch-alls on your countertop.",
-    image:
-      "/images/utensils/k8.jpeg",
+    image: "/images/utensils/k8.jpeg",
     rating: 4.9,
     reviewCount: 412,
     badge: "New",
@@ -81,8 +78,7 @@ export const products: Product[] = [
     category: "Tableware",
     description:
       "Elegant set of 2 golden spoons and a ladle, crafted from high-quality stainless steel. Perfect for serving soups, stews, and other liquid dishes.",
-    image:
-      "/images/utensils/k10.jpeg",
+    image: "/images/utensils/k10.jpeg",
     rating: 4.5,
     reviewCount: 148,
     inStock: true,
@@ -95,8 +91,7 @@ export const products: Product[] = [
     category: "Tableware",
     description:
       "Set of 4 handcrafted ceramic bowls in a beautiful speckled glaze. Durable, microwave and dishwasher safe, and perfect for everyday use or special occasions.",
-    image:
-      "/images/utensils/k13.jpeg",
+    image: "/images/utensils/k13.jpeg",
     rating: 4.7,
     reviewCount: 88,
     inStock: true,
@@ -110,8 +105,7 @@ export const products: Product[] = [
     category: "Appliances",
     description:
       "Sturdy metal plate rack organizer with a sleek black finish. Features adjustable dividers to securely hold plates, bowls, and cutting boards while maximizing vertical storage space in your kitchen.",
-    image:
-      "/images/utensils/k2.jpeg",
+    image: "/images/utensils/k2.jpeg",
     rating: 4.8,
     reviewCount: 167,
     badge: "Sale",
@@ -123,10 +117,8 @@ export const products: Product[] = [
     name: "Spoon Rest Set",
     price: 55.0,
     category: "Tools",
-    description:
-      "Elegant set of wooden spoon rests to keep them sharp.",
-    image:
-      "/images/utensils/k1.jpeg",
+    description: "Elegant set of wooden spoon rests to keep them sharp.",
+    image: "/images/utensils/k1.jpeg",
     rating: 4.9,
     reviewCount: 204,
     badge: "Popular",
@@ -140,8 +132,7 @@ export const products: Product[] = [
     category: "Knives",
     description:
       "Complete set of high-quality kitchen knives with ergonomic handles and sharp, durable blades. Perfect for all your cutting needs.",
-    image:
-      "/images/utensils/k5.jpeg",
+    image: "/images/utensils/k5.jpeg",
     rating: 4.8,
     reviewCount: 156,
     badge: "Premium",
@@ -170,10 +161,60 @@ export const products: Product[] = [
     category: "Tableware",
     description:
       "Set of 6 vibrant colored plates, perfect for adding a pop of color to any dining table.",
-    image:
-      "/images/utensils/k15.jpeg",
+    image: "/images/utensils/k15.jpeg",
     rating: 4.6,
     reviewCount: 190,
+    inStock: true,
+  },
+  {
+    id: "p13",
+    slug: "plates-set",
+    name: "Plates Set",
+    price: 9000,
+    category: "Tableware",
+    description:
+      "Set of 6 vibrant colored plates, perfect for adding a pop of color to any dining table.",
+    image: "/images/utensils/k14.jpeg",
+    rating: 4.6,
+    reviewCount: 190,
+    inStock: true,
+  },
+  {
+    id: "p14",
+    slug: "electric-kettle",
+    name: "Electric Kettle",
+    price: 12000,
+    category: "Appliances",
+    description:
+      "Fast-boiling electric kettle with a sleek design and safety features.",
+    image: "/images/utensils/k18.jpeg",
+    rating: 4.6,
+    reviewCount: 190,
+    inStock: true,
+  },
+  {
+    id: "p15",
+    slug: "pot-set",
+    name: "Pot Set",
+    price: 10000,
+    category: "Cookware",
+    description: "Set of 6 pots with lids, perfect for all your cooking needs.",
+    image: "/images/utensils/k17.jpeg",
+    rating: 4.6,
+    reviewCount: 190,
+    inStock: true,
+  },
+  {
+    id: "p16",
+    slug: "serving-pot",
+    name: "Serving Pot",
+    price: 17000,
+    category: "Cookware",
+    description: "Beautiful serving pot perfect for bringing dishes to the table.",
+    image: "/images/utensils/k16.jpeg",
+    rating: 4.6,
+    reviewCount: 190,
+    badge: "New",
     inStock: true,
   },
 ];
