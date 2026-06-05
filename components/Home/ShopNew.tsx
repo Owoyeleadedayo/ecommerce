@@ -45,7 +45,7 @@ const ShopNew = () => {
   });
 
   return (
-    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center py-10 md:py-18 px-10 md:px-20 lg:px-45 gap-10">
+    <section className="flex flex-col bg-[#FFFFFF] justify-center items-center py-6 md:py-16 px-6 md:px-16 lg:px-45 gap-10">
       <div className="flex flex-col gap-1">
         <p className="text-black/50 text-sm md:text-lg text-center font-medium">
           Utensils for beautiful kitchen
