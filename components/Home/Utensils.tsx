@@ -6,7 +6,6 @@ import { Card } from "../ui/card";
 import { useAppDispatch } from "@/store";
 import { addToCart } from "@/store/cartSlice";
 import { Product } from "@/types/product";
-import { useState } from "react";
 
 const products = [
   {
@@ -67,45 +66,34 @@ const mapUtensilToProduct = (item: (typeof products)[0]): Product => ({
   inStock: true,
 });
 
-// ── isolated card so each has its own imgError state ──────────────────────────
 interface UtensilCardProps {
   product: (typeof products)[0];
   onAddToCart: () => void;
 }
 
 const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
-  const [imgError, setImgError] = useState(false);
-
   return (
-    <Card className="group relative w-full md:w-68 h-full py-0 overflow-hidden">
-      {/* ✅ Fix: use flex + explicit min-h instead of relying on h-full */}
-      <div className="relative flex items-center justify-center h-60 w-full overflow-hidden bg-gray-50">
-        {!imgError ? (
-          <img
-            src={product.image}
-            alt={product.name}
-            onError={() => setImgError(true)}
-            // ✅ Fix: explicit width/height + max constraints instead of w-full h-full
-            width={200}
-            height={200}
-            style={{
-              width: "100%",
-              height: "100%",
-              maxWidth: "200px",
-              maxHeight: "200px",
-              objectFit: "contain",
-              display: "block", 
-            }}
-            className="transition-transform duration-300 group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-100 text-gray-400">
-            <ShoppingCart size={32} className="opacity-30" />
-            <span className="text-xs">{product.name}</span>
-          </div>
-        )}
-
-        <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+    <Card className="group relative w-full md:w-68 py-0 overflow-hidden">
+      {/* ✅ Background-image approach: works on Safari, Opera Mini, all browsers */}
+      <div
+        style={{
+          backgroundImage: `url(${product.image})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundColor: "#f9fafb",
+          width: "100%",
+          height: "240px",
+          position: "relative",
+        }}
+        role="img"
+        aria-label={product.name}
+      >
+        {/* Hover overlay */}
+        <div
+          style={{ position: "absolute", inset: 0 }}
+          className="flex items-center justify-center gap-4 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        >
           <button
             type="button"
             aria-label={`Add ${product.name} to cart`}
@@ -133,7 +121,6 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
     </Card>
   );
 };
-
 
 const Utensils = () => {
   const dispatch = useAppDispatch();
