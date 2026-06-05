@@ -21,19 +21,19 @@ const Map = () => {
         <Card className="flex flex-col gap-3 max-w-75 px-4 border hover:border-[#B2A088] transition-all ease-in-out cursor-pointer duration-300">
           <Phone />
           <p className="text-lg font-medium">Phone</p>
-          <p className="text-gray-500">+234 803 123 4567</p>
+          <p className="text-gray-500">+234 810 753 7957</p>
         </Card>
 
         <Card className="flex flex-col gap-3 max-w-75 px-4 border hover:border-[#B2A088] transition-all ease-in-out cursor-pointer">
           <Mail />
           <p className="text-lg font-medium">Email</p>
-          <p className="text-gray-500">mail@example.com</p>
+          <p className="text-gray-500">akandeazeeza@gmail.com</p>
         </Card>
 
         <Card className="flex flex-col gap-3 max-w-75 px-4 border hover:border-[#B2A088] transition-all ease-in-out cursor-pointer duration-300">
           <MapPin />
           <p className="text-lg font-medium">Address</p>
-          <p className="text-gray-500">123 Main Street, City, Country</p>
+          <p className="text-gray-500">12, Raymond Opara Crescent, Off Okota, Lagos, Nigeria</p>
         </Card>
       </div>
     </section>

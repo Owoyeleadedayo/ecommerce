@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/store";
 import { clearCart } from "@/store/cartSlice";
 import { Button } from "../ui/button";
@@ -47,9 +46,7 @@ const BANKS: BankDetails[] = [
 ];
 
 export default function BankTransferForm() {
-  const router = useRouter();
   const dispatch = useAppDispatch();
-
   const [selectedBank, setSelectedBank] = useState<BankDetails>(BANKS[0]);
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,13 +60,10 @@ export default function BankTransferForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-
-    // Simulate verification
     setTimeout(() => {
-      setIsLoading(false);
       dispatch(clearCart());
-      router.push("/checkout/success?payment_method=transfer");
-    }, 2000);
+       window.location.href = "/checkout/success?payment_method=transfer";
+    }, 3000);
   };
 
   return (
@@ -163,8 +157,8 @@ export default function BankTransferForm() {
         </div>
       </div>
 
-      {/* Action Button */}
       <Button
+        type="submit"
         disabled={isLoading}
         className="w-full bg-[#B2A088] hover:bg-[#A39178] text-white h-14 rounded-xl font-bold text-base flex items-center justify-center gap-2.5 shadow-lg transition-all hover:scale-[1.01] cursor-pointer"
       >

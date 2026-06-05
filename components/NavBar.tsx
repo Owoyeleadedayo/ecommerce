@@ -55,7 +55,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className={`flex w-full h-[70px] items-center justify-between
+      <nav className={`flex w-full h-17.5 items-center justify-between
         px-6 md:px-12 lg:px-45 fixed top-0 z-50 transition-all duration-300
         ${scrolled ? "bg-[#26352F] border-b border-white/10 shadow-md" : "bg-transparent"}`}>
 
@@ -129,7 +129,7 @@ const NavBar = () => {
 
       {/* Mobile menu overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-[#1E2A24] flex flex-col pt-[70px] md:hidden">
+        <div className="fixed inset-0 z-40 bg-[#1E2A24] flex flex-col pt-17.5 md:hidden">
           <div className="flex flex-col px-6 py-8 gap-6 text-white text-xl font-semibold">
             {navPages.map((page) => (
               <Link key={page.name} href={page.link}

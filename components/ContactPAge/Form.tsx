@@ -58,7 +58,7 @@ const Form = () => {
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center mb-30'>
           <button
             type="submit"
             className="bg-[#B2A088] hover:bg-[#9a8a6f] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300"

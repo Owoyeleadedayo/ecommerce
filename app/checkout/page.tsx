@@ -93,7 +93,7 @@ export default function CheckoutPage() {
 
   if (items.length === 0 && !isLoading) {
     return (
-      <main className="flex-1 flex flex-col w-full bg-accent px-6 md:px-10 xl:px-45">
+      <main className="flex-1 flex flex-col w-full bg-accent">
         <PageHeader pageName="Checkout" />
         <div className="flex-1 flex flex-col items-center justify-center text-center p-8 text-white min-h-[50vh] gap-6">
           <ShoppingBag className="h-16 w-16 text-black stroke-[1.5]" />
