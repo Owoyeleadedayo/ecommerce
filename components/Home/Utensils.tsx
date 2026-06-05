@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Heart, ShoppingCart } from "lucide-react";
@@ -77,14 +78,25 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
 
   return (
     <Card className="group relative w-full md:w-68 h-full py-0 overflow-hidden">
-      <div className="relative h-60 w-full overflow-hidden bg-gray-50">
+      {/* ✅ Fix: use flex + explicit min-h instead of relying on h-full */}
+      <div className="relative flex items-center justify-center h-60 w-full overflow-hidden bg-gray-50">
         {!imgError ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={product.image}
             alt={product.name}
             onError={() => setImgError(true)}
-            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            // ✅ Fix: explicit width/height + max constraints instead of w-full h-full
+            width={200}
+            height={200}
+            style={{
+              width: "100%",
+              height: "100%",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              objectFit: "contain",
+              display: "block", 
+            }}
+            className="transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-100 text-gray-400">
@@ -121,6 +133,8 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
     </Card>
   );
 };
+
+
 const Utensils = () => {
   const dispatch = useAppDispatch();
 
