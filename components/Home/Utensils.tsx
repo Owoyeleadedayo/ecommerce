@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Card } from "../ui/card";
 import { useAppDispatch } from "@/store";
@@ -80,14 +79,12 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
     <Card className="group relative w-full md:w-68 h-full py-0 overflow-hidden">
       <div className="relative h-60 w-full overflow-hidden bg-gray-50">
         {!imgError ? (
-          <Image
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={product.image}
             alt={product.name}
-            fill
-            unoptimized
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-contain transition-transform duration-300 group-hover:scale-105"
             onError={() => setImgError(true)}
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-100 text-gray-400">
@@ -96,7 +93,6 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
           </div>
         )}
 
-        {/* Hover overlay with actions */}
         <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <button
             type="button"
@@ -116,7 +112,6 @@ const UtensilCard = ({ product, onAddToCart }: UtensilCardProps) => {
         </div>
       </div>
 
-      {/* Product info */}
       <div className="flex flex-col gap-1 border-t border-gray-100 text-center pb-4 pt-3">
         <p className="text-xl font-semibold">{product.name}</p>
         <p className="text-black/60 text-base font-medium">
