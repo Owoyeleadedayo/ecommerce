@@ -59,14 +59,8 @@ const NavBar = () => {
       isActive(path) ? "text-[#B2A088]" : "text-white hover:text-[#B2A088]"
     }`;
 
-  // ✅ Shared tap style for all interactive elements
-  const tapStyle: React.CSSProperties = {
+    const tapStyle: React.CSSProperties = {
     WebkitTapHighlightColor: "transparent",
-    touchAction: "manipulation",
-    userSelect: "none",
-    WebkitUserSelect: "none" as never,
-    cursor: "pointer",
-    WebkitTransform: "translateZ(0)",
   };
 
   return (
@@ -76,7 +70,7 @@ const NavBar = () => {
         className={`flex w-full h-17.5 items-center justify-between
           px-6 md:px-12 lg:px-45 fixed top-0 transition-all duration-300
           ${scrolled ? "bg-[#26352F] border-b border-white/10 shadow-md" : "bg-transparent"}`}
-        style={{ zIndex: 9999, WebkitTransform: "translateZ(0)" }}
+        style={{ zIndex: 9999 }}
       >
         <Link
           href="/"
@@ -119,7 +113,7 @@ const NavBar = () => {
                 style={{ zIndex: 9999 }}
               >
                 <DropdownMenuGroup>
-                  <DropdownMenuItem >
+                  <DropdownMenuItem>
                     <Link href="/services" className="w-full cursor-pointer">
                       Services
                     </Link>
@@ -139,7 +133,6 @@ const NavBar = () => {
           </Link>
         </div>
 
-        {/* Right side: cart + hamburger */}
         <div
           className="flex items-center gap-2"
           style={{ position: "relative", zIndex: 9999 }}
@@ -165,12 +158,11 @@ const NavBar = () => {
 
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
+            onClick={() => {
               setMobileOpen((prev) => !prev);
             }}
             style={tapStyle}
-            className="md:hidden p-2 rounded-full hover:bg-white/10
+            className="md:hidden z-[100000] p-2 rounded-full hover:bg-white/10
               transition-colors focus:outline-none text-white"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
