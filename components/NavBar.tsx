@@ -63,10 +63,11 @@ const NavBar = () => {
     <>
       {/* ✅ z-[60] beats any z-50 on page content */}
       <nav
-        className={`flex w-full h-17.5 items-center justify-between
-          px-6 md:px-12 lg:px-45 fixed top-0 z-[60] transition-all duration-300
-          ${scrolled ? "bg-[#26352F] border-b border-white/10 shadow-md" : "bg-transparent"}`}
-      >
+  className={`flex w-full h-17.5 items-center justify-between
+    px-6 md:px-12 lg:px-45 fixed top-0 z-60 transition-all duration-300
+    ${scrolled ? "bg-[#26352F] border-b border-white/10 shadow-md" : "bg-transparent"}`}
+  style={{ WebkitTransform: "translateZ(0)" }} 
+>
         <Link
           href="/"
           className="text-3xl font-extrabold tracking-wider text-white hover:text-[#B2A088] transition-colors"
@@ -126,7 +127,7 @@ const NavBar = () => {
         </div>
 
         {/* ✅ z-[60] matches nav so buttons are always on top */}
-        <div className="flex items-center gap-2 relative z-[60]">
+        <div className="flex items-center gap-2 relative z-60">
           <button
             type="button"
             onClick={() => dispatch(toggleCart())}
@@ -151,14 +152,22 @@ const NavBar = () => {
 
           <button
             type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setMobileOpen((prev) => !prev);
+            }}
             style={{
               WebkitTapHighlightColor: "transparent",
               cursor: "pointer",
+              touchAction: "manipulation", // ✅ removes 300ms tap delay on Safari/iOS
+              userSelect: "none", // ✅ prevents text selection interfering with tap
+              WebkitUserSelect: "none", // ✅ Safari-specific
             }}
             className="md:hidden p-2 rounded-full hover:bg-white/10
-              transition-colors focus:outline-none text-white"
-            aria-label="Toggle menu"
+    transition-colors focus:outline-none text-white
+    relative z-60"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -167,7 +176,7 @@ const NavBar = () => {
 
       {/* Mobile menu overlay — z-[55] sits above page but below nav buttons */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[55] bg-[#1E2A24] flex flex-col pt-17.5 md:hidden">
+        <div className="fixed inset-0 z-55 bg-[#1E2A24] flex flex-col pt-17.5 md:hidden">
           <div className="flex flex-col px-6 py-8 gap-6 text-white text-xl font-semibold">
             {navPages.map((page) => (
               <Link
