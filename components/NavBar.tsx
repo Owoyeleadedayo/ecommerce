@@ -127,7 +127,7 @@ const NavBar = () => {
         </div>
 
         {/* Right side: cart + hamburger */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 relative z-50">
           {/* ✅ type="button" prevents Safari treating it as a submit */}
           <button
             type="button"
@@ -151,7 +151,6 @@ const NavBar = () => {
             )}
           </button>
 
-          {/* ✅ type="button" + WebkitTapHighlightColor for Safari mobile */}
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
