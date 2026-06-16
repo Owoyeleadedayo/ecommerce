@@ -1,28 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setCartOpen, removeFromCart, updateQuantity } from "@/store/cartSlice";
 import { X, Plus, Minus, ShoppingBag, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { CartItem } from "@/types/product";
+import { useScrollLock } from "@/lib/useScrollLock";
 
 export default function CartDrawer() {
   const dispatch = useAppDispatch();
   const { items, isOpen } = useAppSelector((state) => state.cart);
 
-  // Disable body scroll when drawer is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  // Shared scroll lock — coordinates with NavBar, no race conditions
+  useScrollLock(isOpen);
 
   const subtotal = items.reduce<number>(
     (sum: number, item: { product: { price: number }; quantity: number }) =>
@@ -30,20 +22,26 @@ export default function CartDrawer() {
     0,
   );
 
-  if (!isOpen) return null;
-
   return (
     <>
+      {/* Backdrop — NO backdrop-blur (causes iOS Safari stacking trap) */}
       <div
-        className="fixed inset-0 z-[9000] bg-black/60 backdrop-blur-sm"
+        className={`fixed inset-0 z-[200] bg-black/60 transition-opacity duration-300
+          ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => dispatch(setCartOpen(false))}
+        aria-hidden="true"
       />
 
+      {/* Drawer panel — single stacking context, no isolate, no nested z */}
       <div
-        className="fixed top-0 right-0 h-full w-full max-w-md bg-[#1E2A24] z-[9001] isolate"
+        className={`fixed top-0 right-0 h-full w-full max-w-md z-[201]
+          transition-transform duration-300 ease-in-out
+          ${isOpen ? "translate-x-0" : "translate-x-full pointer-events-none"}`}
+        role="dialog"
+        aria-modal={isOpen}
+        aria-label="Shopping cart"
       >
-        {/* Drawer panel */}
-        <div className="relative z-10 flex h-full w-full max-w-md flex-col bg-[#1E2A24] text-white shadow-2xl transition-transform duration-300 border-l border-white/10">
+        <div className="flex h-full w-full flex-col bg-[#1E2A24] text-white shadow-2xl border-l border-white/10">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
             <div className="flex items-center gap-2">

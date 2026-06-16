@@ -16,8 +16,8 @@ export default function Home() {
           backgroundImage: "url('/images/banner.jpg')",
         }}
       >
-        {/* ✅ z-0 so it never bleeds over the nav */}
-        <div className="absolute inset-0 bg-black/10" />
+        {/* pointer-events-none so this tint never blocks touches on iOS Safari */}
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
         <div className="absolute flex flex-col w-full h-full justify-center items-left px-6 md:px-16 xl:px-45 gap-3">
           <div className="flex flex-col gap-4 md:gap-6">
             <p className="text-sm text-white/35">Quality Solid</p>

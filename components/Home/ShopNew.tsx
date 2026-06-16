@@ -60,7 +60,7 @@ const ShopCard = ({ product, onAddToCart }: ShopCardProps) => {
       >
         <div
           style={{ position: "absolute", inset: 0 }}
-          className="flex items-center justify-center gap-4 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="flex items-center justify-center gap-4 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
         >
           <button
             type="button"

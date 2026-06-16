@@ -33,7 +33,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
 
         {/* Quick details overlay */}
-        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 flex items-center justify-center gap-2">
           <Link href={`/products/${product.slug}`}>
             <Button className="bg-white/95 text-[#26352F] hover:bg-white rounded-full text-xs font-medium px-4 py-2 cursor-pointer shadow-md">
               View Details

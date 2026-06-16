@@ -16,12 +16,19 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { toggleCart } from "@/store/cartSlice";
 import { CartItem } from "@/types/product";
 import CartDrawer from "./CartDrawer";
+import { useScrollLock } from "@/lib/useScrollLock";
 
 const NavBar = () => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // ✅ Close menu on route change without setState in effect body
+  useEffect(() => {
+    const id = setTimeout(() => setMobileOpen(false), 0);
+    return () => clearTimeout(id);
+  }, [pathname]);
 
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cart);
@@ -36,17 +43,7 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const id = setTimeout(() => setMobileOpen(false), 0);
-    return () => clearTimeout(id);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "unset";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [mobileOpen]);
+  useScrollLock(mobileOpen);
 
   const navPages = [
     { link: "/", name: "Home" },
@@ -59,13 +56,13 @@ const NavBar = () => {
       isActive(path) ? "text-[#B2A088]" : "text-white hover:text-[#B2A088]"
     }`;
 
-    const tapStyle: React.CSSProperties = {
+  const tapStyle: React.CSSProperties = {
     WebkitTapHighlightColor: "transparent",
+    touchAction: "manipulation",
   };
 
   return (
     <>
-      {/* ✅ style-based z-index — not Tailwind z-60 which doesn't exist */}
       <nav
         className={`flex w-full h-17.5 items-center justify-between
           px-6 md:px-12 lg:px-45 fixed top-0 transition-all duration-300
@@ -113,12 +110,12 @@ const NavBar = () => {
                 style={{ zIndex: 9999 }}
               >
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem >
                     <Link href="/services" className="w-full cursor-pointer">
                       Services
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem >
                     <Link href="/products" className="w-full cursor-pointer">
                       All Products
                     </Link>
@@ -148,8 +145,8 @@ const NavBar = () => {
             {totalCount > 0 && (
               <div
                 className="absolute -top-0.5 -right-0.5 bg-[#B2A088] text-white
-                  rounded-full w-4.5 h-4.5 flex items-center justify-center
-                  text-xs font-bold shadow-md animate-bounce"
+                rounded-full w-4.5 h-4.5 flex items-center justify-center
+                text-xs font-bold shadow-md animate-bounce"
               >
                 {totalCount}
               </div>
@@ -158,11 +155,9 @@ const NavBar = () => {
 
           <button
             type="button"
-            onClick={() => {
-              setMobileOpen((prev) => !prev);
-            }}
+            onClick={() => setMobileOpen((prev) => !prev)}
             style={tapStyle}
-            className="md:hidden z-[100000] p-2 rounded-full hover:bg-white/10
+            className="md:hidden p-2 rounded-full hover:bg-white/10
               transition-colors focus:outline-none text-white"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -172,67 +167,68 @@ const NavBar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 bg-[#1E2A24] flex flex-col pt-17.5 md:hidden"
-          style={{ zIndex: 9998 }} // ✅ just below nav
-        >
-          <div className="flex flex-col px-6 py-8 gap-6 text-white text-xl font-semibold">
-            {navPages.map((page) => (
-              <Link
-                key={page.name}
-                href={page.link}
-                onClick={() => setMobileOpen(false)}
-                style={tapStyle}
-                className={
-                  isActive(page.link)
-                    ? "text-[#B2A088]"
-                    : "hover:text-[#B2A088] transition-colors"
-                }
-              >
-                {page.name}
-              </Link>
-            ))}
+      {/* Mobile menu */}
+      <div
+        className={`fixed inset-0 bg-[#1E2A24] flex flex-col pt-17.5 md:hidden
+          transition-transform duration-300 ease-in-out
+          ${mobileOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"}`}
+        style={{ zIndex: 9998 }}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="flex flex-col px-6 py-8 gap-6 text-white text-xl font-semibold">
+          {navPages.map((page) => (
             <Link
-              href="/services"
+              key={page.name}
+              href={page.link}
               onClick={() => setMobileOpen(false)}
               style={tapStyle}
               className={
-                isActive("/services")
+                isActive(page.link)
                   ? "text-[#B2A088]"
                   : "hover:text-[#B2A088] transition-colors"
               }
             >
-              Services
+              {page.name}
             </Link>
-            <Link
-              href="/products"
-              onClick={() => setMobileOpen(false)}
-              style={tapStyle}
-              className={
-                isActive("/products")
-                  ? "text-[#B2A088]"
-                  : "hover:text-[#B2A088] transition-colors"
-              }
-            >
-              All Products
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              style={tapStyle}
-              className={
-                isActive("/contact")
-                  ? "text-[#B2A088]"
-                  : "hover:text-[#B2A088] transition-colors"
-              }
-            >
-              Contact Us
-            </Link>
-          </div>
+          ))}
+          <Link
+            href="/services"
+            onClick={() => setMobileOpen(false)}
+            style={tapStyle}
+            className={
+              isActive("/services")
+                ? "text-[#B2A088]"
+                : "hover:text-[#B2A088] transition-colors"
+            }
+          >
+            Services
+          </Link>
+          <Link
+            href="/products"
+            onClick={() => setMobileOpen(false)}
+            style={tapStyle}
+            className={
+              isActive("/products")
+                ? "text-[#B2A088]"
+                : "hover:text-[#B2A088] transition-colors"
+            }
+          >
+            All Products
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
+            style={tapStyle}
+            className={
+              isActive("/contact")
+                ? "text-[#B2A088]"
+                : "hover:text-[#B2A088] transition-colors"
+            }
+          >
+            Contact Us
+          </Link>
         </div>
-      )}
+      </div>
 
       <CartDrawer />
     </>
