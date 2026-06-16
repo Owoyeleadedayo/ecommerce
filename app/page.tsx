@@ -5,6 +5,7 @@ import Suitable from "@/components/Home/Suitable";
 import Utensils from "@/components/Home/Utensils";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
                 every kitchen.
               </p>
             </div>
-            <div>
+            <Link href="/products">
               <Button
                 type="button"
                 style={{ WebkitTapHighlightColor: "transparent" }}
@@ -44,7 +45,7 @@ export default function Home() {
               >
                 Discover It <MoveRight />
               </Button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
