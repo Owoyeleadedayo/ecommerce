@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="pt-17.5 flex relative min-h-[75vh] md:h-screen bg-no-repeat bg-cover bg-center"
+        className="pt-17.5 flex relative isolate min-h-[75vh] md:h-screen bg-no-repeat bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/banner.jpg')",
         }}
