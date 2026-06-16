@@ -56,13 +56,13 @@ export default function CartDrawer() {
                 </span>
               )}
             </div>
-            <button
+            <Button
               type="button"
               onClick={() => dispatch(setCartOpen(false))}
               className="rounded-full p-1.5 text-white/70 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
             >
               <X className="h-5 w-5" />
-            </button>
+            </Button>
           </div>
 
           {/* Content */}
@@ -114,7 +114,7 @@ export default function CartDrawer() {
                     {/* Quantity and Price Row */}
                     <div className="flex items-center justify-between mt-3">
                       <div className="flex items-center bg-black/40 rounded-lg border border-white/10">
-                        <button
+                        <Button
                           onClick={() =>
                             dispatch(
                               updateQuantity({
@@ -126,11 +126,11 @@ export default function CartDrawer() {
                           className="p-1 px-2 text-white/60 hover:text-white cursor-pointer"
                         >
                           <Minus className="h-3.5 w-3.5" />
-                        </button>
+                        </Button>
                         <span className="text-xs font-semibold px-2 min-w-6 text-center">
                           {item.quantity}
                         </span>
-                        <button
+                        <Button
                           onClick={() =>
                             dispatch(
                               updateQuantity({
@@ -142,7 +142,7 @@ export default function CartDrawer() {
                           className="p-1 px-2 text-white/60 hover:text-white cursor-pointer"
                         >
                           <Plus className="h-3.5 w-3.5" />
-                        </button>
+                        </Button>
                       </div>
                       <span className="text-sm font-bold text-white/90">
                         ₦{(item.product.price * item.quantity).toFixed(2)}
@@ -151,12 +151,12 @@ export default function CartDrawer() {
                   </div>
 
                   {/* Remove button */}
-                  <button
+                  <Button
                     onClick={() => dispatch(removeFromCart(item.product.id))}
                     className="p-1 text-white/40 hover:text-red-400 hover:bg-white/5 rounded-lg transition-colors cursor-pointer self-start"
                   >
                     <Trash2 className="h-4 w-4" />
-                  </button>
+                  </Button>
                 </div>
               ))
             )}
@@ -184,13 +184,13 @@ export default function CartDrawer() {
                     Proceed to Checkout
                   </Button>
                 </Link>
-                <button
+                <Button
                   type="button"
                   onClick={() => dispatch(setCartOpen(false))}
                   className="w-full text-center py-2 text-sm text-white/60 hover:text-white border rounded-lg transition-colors cursor-pointer"
                 >
                   Continue Shopping
-                </button>
+                </Button>
               </div>
             </div>
           )}

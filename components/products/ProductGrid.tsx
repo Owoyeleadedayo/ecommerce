@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { Product } from "@/types/product";
 import ProductCard from "./ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface ProductGridProps {
   products: Product[];
@@ -55,7 +56,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
       {/* Category filters */}
       <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
         {CATEGORIES.map((category) => (
-          <button
+          <Button
             type="button"
             key={category}
             onClick={() => handleCategoryChange(category)}
@@ -66,7 +67,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
             }`}
           >
             {category}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -114,7 +115,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
                 aria-label="Products Pagination"
               >
                 {/* Previous Button */}
-                <button
+                <Button
                   type="button"
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
@@ -122,14 +123,14 @@ export default function ProductGrid({ products }: ProductGridProps) {
                   aria-label="Previous Page"
                 >
                   <ChevronLeft className="h-5 w-5" />
-                </button>
+                </Button>
 
                 {/* Page Number Buttons */}
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                   (page) => {
                     const isActive = page === currentPage;
                     return (
-                      <button
+                      <Button
                         key={page}
                         type="button"
                         onClick={() => handlePageChange(page)}
@@ -141,20 +142,20 @@ export default function ProductGrid({ products }: ProductGridProps) {
                         }`}
                       >
                         {page}
-                      </button>
+                      </Button>
                     );
                   },
                 )}
 
                 {/* Next Button */}
-                <button
+                <Button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
                   className={`cursor-pointer h-10 w-10 flex items-center justify-center rounded-lg border border-[#EAE3DB] bg-white text-[#26352F] transition-all duration-300 hover:bg-[#FBF9F6] hover:border-[#D1C5B5] active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-[#EAE3DB] disabled:active:scale-100`}
                   aria-label="Next Page"
                 >
                   <ChevronRight className="h-5 w-5" />
-                </button>
+                </Button>
               </nav>
             </div>
           )}

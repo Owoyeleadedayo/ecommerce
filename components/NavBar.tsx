@@ -24,7 +24,6 @@ const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // ✅ Close menu on route change without setState in effect body
   useEffect(() => {
     const id = setTimeout(() => setMobileOpen(false), 0);
     return () => clearTimeout(id);
@@ -134,7 +133,7 @@ const NavBar = () => {
           className="flex items-center gap-2"
           style={{ position: "relative", zIndex: 9999 }}
         >
-          <button
+          <Button
             type="button"
             onClick={() => dispatch(toggleCart())}
             style={tapStyle}
@@ -151,9 +150,9 @@ const NavBar = () => {
                 {totalCount}
               </div>
             )}
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
             style={tapStyle}
@@ -163,7 +162,7 @@ const NavBar = () => {
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          </Button>
         </div>
       </nav>
 
