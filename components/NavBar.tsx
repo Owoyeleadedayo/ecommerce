@@ -63,7 +63,7 @@ const NavBar = () => {
     <>
       <nav
         className={`flex w-full h-17.5 items-center justify-between
-          px-6 md:px-12 lg:px-45 fixed top-0 z-50 transition-all duration-300
+          px-6 md:px-12 lg:px-45 fixed top-0 z-60 transition-all duration-300
           ${scrolled ? "bg-[#26352F] border-b border-white/10 shadow-md" : "bg-transparent"}`}
       >
         {/* ✅ Use <a> via Link — not <span> inside Link (Safari needs real anchor) */}
