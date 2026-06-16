@@ -49,11 +49,15 @@ export default function CartDrawer() {
             <h2 className="text-xl font-bold tracking-wide">Your Cart</h2>
             {items.length > 0 && (
               <span className="rounded-full bg-[#B2A088] px-2 py-0.5 text-xs font-semibold">
-                {items.reduce((count: number, item: CartItem) => count + item.quantity, 0)}
+                {items.reduce(
+                  (count: number, item: CartItem) => count + item.quantity,
+                  0,
+                )}
               </span>
             )}
           </div>
           <button
+            type="button"
             onClick={() => dispatch(setCartOpen(false))}
             className="rounded-full p-1.5 text-white/70 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
           >
@@ -75,6 +79,7 @@ export default function CartDrawer() {
                 </p>
               </div>
               <Button
+                type="button"
                 onClick={() => dispatch(setCartOpen(false))}
                 className="mt-2 bg-[#B2A088] text-white hover:bg-[#A39178] px-6 rounded-full cursor-pointer"
               >
@@ -172,6 +177,7 @@ export default function CartDrawer() {
             <div className="flex flex-col gap-2 pt-2">
               <Link href="/checkout" className="w-full">
                 <Button
+                  type="button"
                   onClick={() => dispatch(setCartOpen(false))}
                   className="w-full bg-[#B2A088] text-white hover:bg-[#A39178] py-6 font-semibold rounded-xl text-md cursor-pointer transition-all shadow-lg"
                 >
@@ -179,6 +185,7 @@ export default function CartDrawer() {
                 </Button>
               </Link>
               <button
+                type="button"
                 onClick={() => dispatch(setCartOpen(false))}
                 className="w-full text-center py-2 text-sm text-white/60 hover:text-white border rounded-lg transition-colors cursor-pointer"
               >
