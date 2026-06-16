@@ -37,14 +37,12 @@ export default function Home() {
                 every kitchen.
               </p>
             </div>
-            <Link href="/products">
-              <Button
-                type="button"
-                style={{ WebkitTapHighlightColor: "transparent" }}
-                className="bg-transparent border border-white p-3 md:p-5 rounded-3xl hover:text-black hover:bg-white transition-colors duration-300 cursor-pointer"
-              >
-                Discover It <MoveRight />
-              </Button>
+            <Link
+              href="/products"
+              style={{ WebkitTapHighlightColor: "transparent" }}
+              className="bg-transparent border border-white p-3 md:p-5 rounded-3xl hover:text-black hover:bg-white transition-colors duration-300 cursor-pointer"
+            >
+              Discover It <MoveRight />
             </Link>
           </div>
         </div>
