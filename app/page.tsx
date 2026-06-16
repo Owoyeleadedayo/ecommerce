@@ -12,10 +12,10 @@ export default function Home() {
       <div
         className="pt-17.5 flex relative min-h-[75vh] md:h-screen bg-no-repeat bg-cover bg-center"
         style={{
-          // backgroundAttachment: "fixed", // ← remove this entirely, it causes blank bg on mobile Safari
           backgroundImage: "url('/images/banner.jpg')",
         }}
       >
+        {/* ✅ z-0 so it never bleeds over the nav */}
         <div className="absolute inset-0 bg-black/10 z-0" />
         <div className="absolute z-0 flex flex-col w-full h-full justify-center items-left px-6 md:px-16 xl:px-45 gap-3">
           <div className="flex flex-col gap-4 md:gap-6">

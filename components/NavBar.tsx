@@ -61,12 +61,12 @@ const NavBar = () => {
 
   return (
     <>
+      {/* ✅ z-[60] beats any z-50 on page content */}
       <nav
         className={`flex w-full h-17.5 items-center justify-between
-          px-6 md:px-12 lg:px-45 fixed top-0 z-60 transition-all duration-300
+          px-6 md:px-12 lg:px-45 fixed top-0 z-[60] transition-all duration-300
           ${scrolled ? "bg-[#26352F] border-b border-white/10 shadow-md" : "bg-transparent"}`}
       >
-        {/* ✅ Use <a> via Link — not <span> inside Link (Safari needs real anchor) */}
         <Link
           href="/"
           className="text-3xl font-extrabold tracking-wider text-white hover:text-[#B2A088] transition-colors"
@@ -77,7 +77,6 @@ const NavBar = () => {
         {/* Desktop nav */}
         <div className="hidden md:flex gap-6 items-center">
           {navPages.map((page) => (
-            // ✅ className on Link directly, not on a child <span>
             <Link
               key={page.name}
               href={page.link}
@@ -106,7 +105,7 @@ const NavBar = () => {
                 className="w-52 border-none bg-white shadow-xl"
               >
                 <DropdownMenuGroup>
-                  <DropdownMenuItem >
+                  <DropdownMenuItem>
                     <Link href="/services" className="w-full cursor-pointer">
                       Services
                     </Link>
@@ -126,9 +125,8 @@ const NavBar = () => {
           </Link>
         </div>
 
-        {/* Right side: cart + hamburger */}
-        <div className="flex items-center gap-2 relative z-50">
-          {/* ✅ type="button" prevents Safari treating it as a submit */}
+        {/* ✅ z-[60] matches nav so buttons are always on top */}
+        <div className="flex items-center gap-2 relative z-[60]">
           <button
             type="button"
             onClick={() => dispatch(toggleCart())}
@@ -143,8 +141,8 @@ const NavBar = () => {
             {totalCount > 0 && (
               <div
                 className="absolute -top-0.5 -right-0.5 bg-[#B2A088] text-white
-                  rounded-full w-4.5 h-4.5 flex items-center justify-center
-                  text-xs font-bold shadow-md animate-bounce"
+                rounded-full w-4.5 h-4.5 flex items-center justify-center
+                text-xs font-bold shadow-md animate-bounce"
               >
                 {totalCount}
               </div>
@@ -167,9 +165,9 @@ const NavBar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu overlay — z-[55] sits above page but below nav buttons */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-[#1E2A24] flex flex-col pt-17.5 md:hidden">
+        <div className="fixed inset-0 z-[55] bg-[#1E2A24] flex flex-col pt-17.5 md:hidden">
           <div className="flex flex-col px-6 py-8 gap-6 text-white text-xl font-semibold">
             {navPages.map((page) => (
               <Link
