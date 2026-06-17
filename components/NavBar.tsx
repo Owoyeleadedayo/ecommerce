@@ -90,7 +90,6 @@ const NavBar = () => {
           <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
             <div
               onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
             >
               <DropdownMenuTrigger>
                 <Button
@@ -166,7 +165,6 @@ const NavBar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       <div
         className={`fixed inset-0 bg-[#1E2A24] flex flex-col pt-17.5 md:hidden
           transition-transform duration-300 ease-in-out
